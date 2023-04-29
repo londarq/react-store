@@ -11,7 +11,12 @@ import Product from '../models/Product'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../app/productsSlice'
 
-const ProductCard = (product: Product) => {
+interface CardProps {
+  product: Product
+  onOpenModal: (product: Product) => void
+}
+
+const ProductCard = ({ product, onOpenModal }: CardProps) => {
   const dispatch = useDispatch()
 
   return (
@@ -23,6 +28,7 @@ const ProductCard = (product: Product) => {
         flexDirection: 'column',
         justifyContent: 'space-between',
       }}
+      onClick={() => onOpenModal({ ...product })}
     >
       <Stack>
         <CardMedia
