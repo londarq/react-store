@@ -14,12 +14,17 @@ import {
   removeFromCart,
 } from '../app/productsSlice'
 import CartType from '../models/CartType'
+import './Card.css'
+import { useState } from 'react'
 
 const CartItem = (cartItem: CartType) => {
   const dispatch = useDispatch()
 
   return (
-    <Card sx={{ m: 2, display: 'flex', justifyContent: 'space-between' }}>
+    <Card
+      className={'card'}
+      sx={{ m: 2, display: 'flex', justifyContent: 'space-between' }}
+    >
       <Stack sx={{ flexDirection: 'row' }}>
         <CardMedia
           component='img'

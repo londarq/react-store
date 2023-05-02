@@ -10,6 +10,8 @@ import {
 import Product from '../models/Product'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../app/productsSlice'
+import { useState } from 'react'
+import './Card.css'
 
 interface CardProps {
   product: Product
@@ -18,9 +20,19 @@ interface CardProps {
 
 const ProductCard = ({ product, onOpenModal }: CardProps) => {
   const dispatch = useDispatch()
+  const [clicked, setClicked] = useState(false)
+
+  const handleClick = () => {
+    setClicked(true)
+    onOpenModal({ ...product })
+    setTimeout(() => {
+      setClicked(false)
+    }, 5)
+  }
 
   return (
     <Card
+      className={`card ${clicked ? 'clicked' : ''}`}
       sx={{
         width: 345,
         m: 2,
@@ -28,7 +40,7 @@ const ProductCard = ({ product, onOpenModal }: CardProps) => {
         flexDirection: 'column',
         justifyContent: 'space-between',
       }}
-      onClick={() => onOpenModal({ ...product })}
+      onClick={handleClick}
     >
       <Stack>
         <CardMedia

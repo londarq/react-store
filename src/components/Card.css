@@ -1,0 +1,14 @@
+.card {
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 2px 10px rgba(220, 0, 0, 0.815);
+  transition: box-shadow inherit ease;
+}
+
+.card.clicked {
+  transform: scale(0.95);
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+}
