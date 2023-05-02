@@ -50,7 +50,10 @@ const ProductCard = ({ product, onOpenModal }: CardProps) => {
       <CardActions>
         <Button
           variant='contained'
-          onClick={() => dispatch(addToCart(product))}
+          onClick={(e) => {
+            e.stopPropagation()
+            dispatch(addToCart(product))
+          }}
         >
           add to cart
         </Button>
