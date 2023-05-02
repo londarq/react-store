@@ -11,7 +11,7 @@ const Filter = () => {
       name={'title'}
       value={searchParams.title}
       variant='filled'
-      sx={{ backgroundColor: 'white' }}
+      sx={{ backgroundColor: 'white', width: 'inherit' }}
       label='Looking For?'
       onChange={(ev) => dispatch(setSearchParams(ev.target.value))}
     />

@@ -1,4 +1,4 @@
-import { createSlice, Slice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { PayloadAction } from 'react-redux-typescript'
 import Product from '../models/Product'
 import CartType from '../models/CartType'

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Card from '../components/Card'
 import Product from '../models/Product'
 import { setProducts } from '../app/productsSlice'
-import Filter from '../components/Filter'
 import Modal from '@mui/material/Modal'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -66,8 +65,6 @@ const Home = () => {
 
   return (
     <>
-      <Filter />
-
       {products.map((p: Product) => {
         return <Card key={p.id} product={p} onOpenModal={handleOpenModal} />
       })}

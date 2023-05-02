@@ -2,7 +2,13 @@ import {
   AppBar,
   Badge,
   Button,
+  Drawer,
+  Grid,
   IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
   Paper,
   Stack,
   Toolbar,
@@ -12,13 +18,16 @@ import LocalMallIcon from '@mui/icons-material/LocalMall'
 import { Link, Outlet } from 'react-router-dom'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import './Nav.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useMemo } from 'react'
 import CartType from '../models/CartType'
 import bgImage from '../background.jpeg'
+import Filter from './Filter'
+import { setSearchParams } from '../app/productsSlice'
 
 const Nav = () => {
   const { cart } = useSelector((store: any) => store.products)
+  const dispatch = useDispatch()
 
   const basketAmount = useMemo(() => {
     if (!cart.length) {
@@ -30,7 +39,7 @@ const Nav = () => {
   }, [cart])
 
   return (
-    <div>
+    <>
       <AppBar
         position={'sticky'}
         sx={{
@@ -79,22 +88,62 @@ const Nav = () => {
           </Button>
         </Toolbar>
       </AppBar>
-      <Paper
-        sx={{
-          width: '100%',
-          height: '100%',
-          minHeight: '100vh',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignContent: 'center',
-          backgroundImage: `url(${bgImage})`,
-          backgroundSize: 500,
-        }}
-      >
-        <Outlet />
-      </Paper>
-    </div>
+
+      <Grid container>
+        <Grid
+          item
+          xs={2}
+          sx={{
+            position: 'sticky',
+            top: '64.5px',
+            height: 'calc(100vh - 64.5px)',
+          }}
+        >
+          <List>
+            <ListItem>
+              <Filter />
+            </ListItem>
+            <ListItem
+              button
+              onClick={() => dispatch(setSearchParams(''))}
+              key='All'
+            >
+              <ListItemText primary='All' />
+            </ListItem>
+            <ListItem
+              button
+              onClick={() => dispatch(setSearchParams('Apple'))}
+              key='Apple'
+            >
+              <ListItemText primary='Apple' />
+            </ListItem>
+            <ListItem
+              button
+              onClick={() => dispatch(setSearchParams('test'))}
+              key='test'
+            >
+              <ListItemText primary='test' />
+            </ListItem>{' '}
+          </List>
+        </Grid>
+        <Grid item xs={10}>
+          <Paper
+            sx={{
+              width: '100%',
+              minHeight: 'calc(100vh - 64.5px)',
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              alignContent: 'center',
+              backgroundImage: `url(${bgImage})`,
+              backgroundSize: 650,
+            }}
+          >
+            <Outlet />
+          </Paper>
+        </Grid>
+      </Grid>
+    </>
   )
 }
 

@@ -15,7 +15,6 @@ import {
 } from '../app/productsSlice'
 import CartType from '../models/CartType'
 import './Card.css'
-import { useState } from 'react'
 
 const CartItem = (cartItem: CartType) => {
   const dispatch = useDispatch()
